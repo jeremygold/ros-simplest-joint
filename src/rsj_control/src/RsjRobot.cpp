@@ -16,6 +16,12 @@ RsjRobot::RsjRobot() {
 
 RsjRobot::~RsjRobot() {}
 
-void RsjRobot::read() {}
+void RsjRobot::read() {
+  printf("Reading Robot State - ");
+  printf("Pos: %0.2f; Vel: %0.2f; Eff:%0.2f\n", pos, vel, eff);
+}
 
-void RsjRobot::write() {}
+void RsjRobot::write() {
+  printf("Writing Robot State - ");
+  printf("Cmd: %0.2f\n", cmd);
+}

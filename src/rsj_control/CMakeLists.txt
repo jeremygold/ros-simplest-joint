@@ -7,7 +7,7 @@ project(rsj_control)
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
-find_package(catkin REQUIRED)
+find_package(catkin REQUIRED roscpp controller_manager hardware_interface)
 
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
@@ -99,9 +99,9 @@ find_package(catkin REQUIRED)
 ## CATKIN_DEPENDS: catkin_packages dependent projects also need
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
-  INCLUDE_DIRS rsj_control/include 
+#  INCLUDE_DIRS include 
 #  LIBRARIES rsj_control
-#  CATKIN_DEPENDS other_catkin_pkg
+  CATKIN_DEPENDS hardware_interface controller_manager roscpp
 #  DEPENDS system_lib
 )
 
@@ -112,8 +112,9 @@ catkin_package(
 ## Specify additional locations of header files
 ## Your package locations should be listed before other locations
 include_directories(
-# include
-# ${catkin_INCLUDE_DIRS}
+  include
+  /opt/ros/kinetic/include
+  ${catkin_INCLUDE_DIRS}
 )
 
 ## Declare a C++ library
@@ -145,6 +146,7 @@ add_executable(${PROJECT_NAME}_node src/rsj_control_node.cpp src/RsjRobot.cpp)
 # target_link_libraries(${PROJECT_NAME}_node
 #   ${catkin_LIBRARIES}
 # )
+target_link_libraries(${PROJECT_NAME}_node ${catkin_LIBRARIES})
 
 #############
 ## Install ##
