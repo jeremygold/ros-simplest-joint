@@ -1,18 +1,10 @@
 <launch>
-
+  <node name="bot" pkg="rsj_control" type="rsj_control_node" respawn="false" output="screen" ns="/rsj" />
+  <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find rsj_description)/urdf/rsj.xacro'" />
   <!-- Load joint controller configurations from YAML file to parameter server -->
   <rosparam file="$(find rsj_control)/config/rsj_control.yaml" command="load"/>
-
   <!-- load the controllers -->
-  <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false"
-	output="screen" ns="/rsj" args="joint_state_controller
-					  joint1_position_controller"/>
-
+  <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" ns="/rsj" args="joint_state_controller joint1_position_controller"/>
   <!-- convert joint states to TF transforms for rviz, etc -->
-  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"
-
-	respawn="false" output="screen">
-    <remap from="/joint_states" to="/rsj/joint_states" />
-  </node>
-
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="false" output="screen"></node>
 </launch>
