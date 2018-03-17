@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<robot 
+    xmlns:xacro="http://www.ros.org/wiki/xacro">
+    <!-- Constants for robot dimensions -->
+    <xacro:property name="PI" value="3.1415926535897931"/>
+    <!-- arbitrary value for mass -->
+    <xacro:property name="mass" value="1" />
+    <!-- Square dimensions (widthxwidth) of beams -->
+    <xacro:property name="width" value="0.1" />
+    <!-- Link 1 -->
+    <xacro:property name="height1" value="2" />
+    <!-- Link 2 -->
+    <xacro:property name="height2" value="1" />
+    <!-- Space btw top of beam and the each joint -->
+    <xacro:property name="axle_offset" value="0.05" />
+</robot>
